@@ -13,6 +13,5 @@ jobs:
           echo "${{ secrets.SSH_PEM }}" | tr -d '\r' > key.pem
           chmod 400 key.pem
           ssh -i key.pem  -o "StrictHostKeyChecking no" ubuntu@ec2-3-21-171-204.us-east-2.compute.amazonaws.com <<'ENDSSH'
-          pwd
-          ls
+          docker-compose up -d
           ENDSSH
