@@ -3,6 +3,7 @@ name: Docker-compose remote deploy
 on:
   workflow_dispatch:
 
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -19,5 +20,5 @@ jobs:
       - name: Deploy
         run: docker-compose up -d
         env:
-          COMPOSE_DOCKER_CLI_BUILD: 0
           DOCKER_HOST: "ssh://gha@ec2-3-21-171-204.us-east-2.compute.amazonaws.com"
+          COMPOSE_DOCKER_CLI_BUILD: 0
