@@ -20,4 +20,4 @@ jobs:
         run: docker-compose up -d
         env:
           COMPOSE_DOCKER_CLI_BUILD: 0
-          DOCKER_HOST: "ssh://gha@〈HOSTNAME〉"
+          DOCKER_HOST: "ssh://gha@ec2-3-21-171-204.us-east-2.compute.amazonaws.com"
