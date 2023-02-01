@@ -1,0 +1,24 @@
+name: Docker-compose remote deploy host
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.GHA_DEPLOY_SSH_PRIVATE_KEY }}
+
+      - name: Disable Host key verification
+        # Hack to prevent "Host key verification failed". Should be replaced with a ssh-keyscan based solution
+        run: echo "StrictHostKeyChecking no" >> ~/.ssh/config
+
+      - name: Deploy
+        run: docker-compose up -d
+        env:
+          DOCKER_HOST: "ssh://gha@ec2-3-21-171-204.us-east-2.compute.amazonaws.com"
+          COMPOSE_DOCKER_CLI_BUILD: 0

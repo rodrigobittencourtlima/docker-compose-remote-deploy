@@ -1,4 +1,4 @@
-name: Docker-compose remote deploy
+name: Docker-compose remote deploy pem
 
 on:
   workflow_dispatch:
